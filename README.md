@@ -14,5 +14,9 @@ git config --global user.name "Tams0"
 git commit -m "Premier commit"
 git push -u origin main
 
---Initialisation de express
+--Initialisation de express(toutes les dépenances du projet seront ici dans node_modules)
 npm install express
+
+--Installation de trois librairies jest supertest et eslint en version 8, les dépendances de dev
+npm install --save-dev jest supertest eslint@8 
+
