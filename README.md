@@ -20,3 +20,5 @@ npm install express
 --Installation de trois librairies jest supertest et eslint en version 8, les dépendances de dev
 npm install --save-dev jest supertest eslint@8 
 
+--Lancement de notre serveur
+node src/app.js
