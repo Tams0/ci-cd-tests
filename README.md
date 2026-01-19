@@ -22,3 +22,6 @@ npm install --save-dev jest supertest eslint@8
 
 --Lancement de notre serveur
 node src/app.js
+
+--Run des tests unitaires
+npm run test
