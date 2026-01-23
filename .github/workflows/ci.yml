@@ -29,5 +29,5 @@ jobs:
     steps:
       - uses: ttskch/render-deploy@v1.0.0
         with:
-          api-key: API_KEY
-          service-id: SECRET_KEY
+          api-key: ${{ API_KEY }}
+          service-id: ${{ SECRET_KEY }}
