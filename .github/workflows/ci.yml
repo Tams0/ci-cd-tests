@@ -29,7 +29,5 @@ jobs:
     steps:
       - uses: ttskch/render-deploy@v1.0.0
         with:
-          api-key: secrets.RENDER_API_KEY
-          service-id: secrets.RENDER_SERVICE_ID
-          interval: 20 # optional
-          timeout: 300 # optional
+          api-key: rnd_yknFJxS2gkfFHETEkKRJQF2njgtj
+          service-id: srv-d5pi8opr0fns73f28ls0
