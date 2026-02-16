@@ -21,5 +21,3 @@ res.send(`<h1>Bienvenue, ${name}</h1>`)
 
 // Exporte le router pour être utilisé dans l'application
 module.exports = router
-
-router.get('/inject', (req,res) =>)
