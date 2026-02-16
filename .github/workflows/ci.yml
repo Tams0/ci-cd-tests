@@ -35,30 +35,27 @@ jobs:
         with:
           config: p/javascript
       #Notification discord
-      - name: Notify Discord on failure
-  if: failure()
-  run: |
-    curl -H "Content-Type: application/json" \
-    -X POST \
-    -d '{
-      "username": "CI/CD Bot",
-      "embeds": [{
-        "title": "❌ Pipeline échouée",
-        "description": "Le scan de sécurité a détecté une vulnérabilité",
-        "color": 16711680,
-        "fields": [
-          { "name": "Repository", "value": "${{ github.repository }}", "inline": true },
-          { "name": "Branch", "value": "${{ github.ref_name }}", "inline": true },
-          { "name": "Commit", "value": "${{ github.sha }}", "inline": false },
-          { "name": "Auteur", "value": "${{ github.actor }}", "inline": true }
-        ],
-        "footer": { "text": "GitHub Actions" }
-      }]
-    }' \
-    ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Notify d'échec (Discord)
+        if: failure()
+        run: |
+          echo "### ❌ Échec de la Pipelinede Sécurité" >> $GITHUB_STEP_SUMMARY
+          echo "Une vulnérabilité ou un bug a été détecté. Vérifiez les logs SAST/SCA." >> $GITHUB_STEP_SUMMARY
+
+          # Envoi d'un Webhook Discord
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d '{
+            "username": "CI/CD Bot",
+            "embeds": [{
+              "title": "❌ Pipeline échouée : ça marche pas"
+            }]
+          }' \
+          ${{ secrets.DISCORD_WEBHOOK }}
 
   deploy:
+    needs: security-and-build
     runs-on: ubuntu-latest
+    if : github.ref == 'refs/heads/main' # On ne déploie que depuis la branche main
     steps:
       - uses: ttskch/render-deploy@v1.0.0
         with:
