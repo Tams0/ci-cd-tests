@@ -7,7 +7,7 @@ on:
      - git tag -a v1.0 -m "Mon message de version"
 
 jobs:
-  build:
+  security-and-build:
     # On utilise l'Ubuntu latest pour la build
     runs-on: ubuntu-latest
 
@@ -26,6 +26,7 @@ jobs:
       - run: npm run lint
       # On lance les tests
       - run: npm test
+
       #SCA
       - name: SCA - Audit des dépendances
         run: npm audit --audit-level=high
