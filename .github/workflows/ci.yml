@@ -3,8 +3,8 @@ name: Ma première CI/CD
 on:
   push:
     branches: [main]
-  tags:
-    - 'v*'
+    tags:
+     - git tag -a v1.0 -m "Mon message de version"
 
 jobs:
   build:
