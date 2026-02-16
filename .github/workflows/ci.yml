@@ -12,14 +12,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      #SCA
-      - name: SCA - Audit des dépendances
-        run: npm audit --audit-level=high
-      #SAST
-      - name: SAST - Scan du code source (Semgrep)
-        uses: semgrep/semgrep-action@v1
-        with:
-          config: p/javascript
       # On récupère le code via le git
       - uses: actions/checkout@v3
       # On utilise/install Node.js 20.x
@@ -28,6 +20,14 @@ jobs:
         with:
           node-version: 20.x
           cache: 'npm'
+      #SCA
+      - name: SCA - Audit des dépendances
+        run: npm audit --audit-level=high
+      #SAST
+      - name: SAST - Scan du code source (Semgrep)
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: p/javascript
       # On installe les dépendances
       - run: npm ci
       # On lance le linter
